@@ -19,6 +19,10 @@
   import { useRouter } from "next/navigation";
   import { useEffect,useState } from "react"
   import React from 'react';
+  import Image from 'next/image';
+  import logo from '../../../public/logo.png';
+  import profile from '../../../public/profile.png';
+
   export function Dashboard() {
   const [accountData, setAccountData] = useState(null);
   const [accountDetails, setAccountDetails] = useState(null);
@@ -209,7 +213,7 @@
       (<div
       
         className="grid min-h-screen w-full overflow-hidden lg:grid-cols-[280px_1fr]">
-          
+          <Image src={logo} alt="Logo" className="logo" width={45} height={20} />
         <div className="hidden border-r bg-gray-100/40 lg:block dark:bg-gray-800/40">
           <div className="flex h-full max-h-screen flex-col gap-2">
             <div className="flex h-[60px] items-center border-b px-6">
@@ -264,22 +268,26 @@
 
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button
-                  className="rounded-full border border-gray-200 w-8 h-8 dark:border-gray-800"
-                  size="icon"
-                  variant="ghost">
+              <Button
+                className="rounded-full border border-gray-200 w-8 h-8 dark:border-gray-800"
+                size="icon"
+                variant="ghost">
                   <img
-                    alt="Avatar"
-                    className="rounded-full"
-                    height="32"
-                    src="/placeholder.svg"
-                    style={{
-                      aspectRatio: "32/32",
-                      objectFit: "cover",
+                    alt="profile"
+                    className="profile "
+                    src="/profile.png"
+                    onError={(e) => {
+                      e.target.onerror = null; // Prevent infinite loop
+                      e.target.src = 'fallback-image-url'; // Set fallback image URL
                     }}
-                    width="32" />
-                  <span className="sr-only">Toggle user menu</span>
-                </Button>
+                    style={{
+                      width: '32px',
+                      height: '32px',
+                      objectFit: 'cover',
+                    }}
+                  />
+                <span className="sr-only">Toggle user menu</span>
+              </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
@@ -338,41 +346,16 @@
                 </Card>
               </div>
               <div className="md:col-span-2 lg:col-span-3 xl:col-span-2 flex flex-col gap-6">
-                <Card>
-                  <div>
-                    <CardHeader className="flex flex-row items-center space-y-0">
-                      <CardTitle>Product Management</CardTitle>
-                      <Link href ="/profile/borrowed">
-                      <BorrowButton/>
-                      </Link>
-                    </CardHeader>
-                    <CardContent className="text-sm">
-                      <div className="grid gap-1">
-                        <Link className="text-blue-600 underline" href="#">
-                          Hammer
-                        </Link>
-                        <div>Available</div>
-                      </div>
-                    </CardContent>
-                  </div>
-                  <Separator />
-                  <div>
-                    <CardHeader>
-                      <CardTitle>Drill</CardTitle>
-                    </CardHeader>
-                    <CardContent className="text-sm">
-                      <div>Borrowed</div>
-                    </CardContent>
-                  </div>
-                  <Separator />
-                  <div>
-                    <CardHeader>
-                      <CardTitle>Screwdriver</CardTitle>
-                    </CardHeader>
-                    <CardContent className="text-sm">Available</CardContent>
-                  </div>
-                </Card>
-              </div>
+                  <Card>
+                  <CardHeader className="relative flex flex-row items-center">
+                    <CardTitle>Tool Management</CardTitle>
+                    <Link href="/profile/borrowed" className="absolute bottom-3 right-3">
+                      <BorrowButton />
+                    </Link>
+                  </CardHeader>
+
+                  </Card>
+                </div>
             </div>
           </main>
         </div>

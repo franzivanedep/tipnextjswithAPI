@@ -1,0 +1,42 @@
+.pageWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:  10
+    vh; /* Make it full viewport height */
+    background-size: cover; /* Cover the entire area of .pageWrapper */
+    background-position: center;
+    animation: switchBackground  30s infinite;
+  }
+  
+  @keyframes switchBackground {
+    0%,  100% {
+        background-image: url('/1pic.jpg');
+    }
+    33% {
+        background-image: url('/2pic.jpg');
+    }
+    66% {
+        background-image: url('/3pic.jpg');
+    }
+  }
+  
+  /* Media query example for smaller screens */
+  @media (max-width:  600px) {
+    .pageWrapper {
+        background-image: url('/small-screen-bg.jpg');
+    }
+  }
+  
+  /* Additional media queries for larger screens */
+  @media (min-width:  601px) and (max-width:  1024px) {
+    .pageWrapper {
+        background-image: url('/tablet-screen-bg.jpg');
+    }
+  }
+  
+  @media (min-width:  1025px) {
+    .pageWrapper {
+        background-image: url('/large-screen-bg.jpg');
+    }
+  }

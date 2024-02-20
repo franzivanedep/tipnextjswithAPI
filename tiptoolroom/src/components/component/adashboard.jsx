@@ -7,7 +7,7 @@ import { Atransact } from "./atransact"
 import { useRouter } from "next/navigation";
 
 export function Adashboard() {
-  const router = useRouter()
+const router = useRouter()
 
   const handleLogout = () => {
     sessionStorage.removeItem('jwt');

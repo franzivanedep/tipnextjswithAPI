@@ -74,3 +74,19 @@
     @apply bg-background text-foreground;
   }
 }
+
+.form-box {
+  border:   1px solid #ccc;
+  padding:   20px;
+  margin-top:  1%;
+  border-radius:   5px;
+  box-shadow:   0   0   10px rgba(0,0,0,0.1);
+  height:  auto; /* Set the height of the box */
+}
+
+.logo {
+  position: absolute;
+  top:  14px; /* Adjust as needed */
+  left:  9px; /* Adjust as needed */
+}
+
